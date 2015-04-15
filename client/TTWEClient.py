@@ -260,8 +260,8 @@ class TTWEClientDevice:
 
     return rcv
 
-if __name__ == '__main__':
-
+def main():
+  
   signal.signal(signal.SIGINT, signal_handler)
 
   parser = argparse.ArgumentParser()
@@ -281,3 +281,7 @@ if __name__ == '__main__':
   u.service_irqs()
   print ("Running")
   u.disconnect()
+
+
+if __name__ == '__main__':
+  main()
