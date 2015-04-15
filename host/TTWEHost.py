@@ -139,8 +139,7 @@ class HostRelayDevice:
       self.snd_ep3.flush()
       self.snd_ep3_data = '\n'
 
-if __name__ == '__main__':
-
+def main():
   signal.signal(signal.SIGINT, signal_handler)
 
   parser = argparse.ArgumentParser()
@@ -177,3 +176,7 @@ if __name__ == '__main__':
   print('done enumerating, deferring to irqs')
   client.service_irqs()
   client.usb_disconnect()
+  
+if __name__ == '__main__':
+  main()
+  
