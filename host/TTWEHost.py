@@ -6,7 +6,6 @@ import stat
 import sys
 import binascii
 import array
-import time
 import warnings
 import signal
 import argparse
