@@ -83,10 +83,10 @@ class GoodFET:
             self.btInit(port,2,attemptlimit)
         else:
             self.pyserInit(port,timeout,attemptlimit)
-    def btInit(self, port, timeout, attemptlimit):
+    #def btInit(self, port, timeout, attemptlimit):
         """Open a bluetooth port."""
         #self.verbose=True;  #For debugging BT.
-        self.serialport=GoodFETbtser(port)
+        #self.serialport=GoodFETbtser(port)
         
     def pyserInit(self, port, timeout, attemptlimit):
         """Open the serial port"""
