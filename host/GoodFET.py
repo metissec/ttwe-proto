@@ -13,13 +13,14 @@ fmt = ("B", "<H", None, "<L")
 
 def getClient(name="GoodFET"):
     import GoodFET, GoodFETCC, GoodFETAVR, GoodFETSPI, GoodFETMSP430, GoodFETNRF, GoodFETCCSPI
-    if(name=="GoodFET" or name=="monitor"): return GoodFET.GoodFET()
-    elif name=="cc" or name=="cc51": return GoodFETCC.GoodFETCC()
-    elif name=="cc2420" or name=="ccspi": return GoodFETCCSPI.GoodFETCCSPI()
-    elif name=="avr": return GoodFETAVR.GoodFETAVR()
-    elif name=="spi": return GoodFETSPI.GoodFETSPI()
-    elif name=="msp430": return GoodFETMSP430.GoodFETMSP430()
-    elif name=="nrf": return GoodFETNRF.GoodFETNRF()
+    #if(name=="GoodFET" or name=="monitor"): 
+    return GoodFET.GoodFET()
+    #elif name=="cc" or name=="cc51": return GoodFETCC.GoodFETCC()
+    #elif name=="cc2420" or name=="ccspi": return GoodFETCCSPI.GoodFETCCSPI()
+    #elif name=="avr": return GoodFETAVR.GoodFETAVR()
+    #elif name=="spi": return GoodFETSPI.GoodFETSPI()
+    #elif name=="msp430": return GoodFETMSP430.GoodFETMSP430()
+    #elif name=="nrf": return GoodFETNRF.GoodFETNRF()
     
     print("Unsupported target: %s" % name)
     sys.exit(0)
