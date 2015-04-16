@@ -259,3 +259,25 @@ class TTWEClientDevice:
         print("MODIFIED endpoint descriptors: %s" % rcv)
 
     return rcv
+
+if __name__ == '__main__':
+
+  signal.signal(signal.SIGINT, signal_handler)
+
+  parser = argparse.ArgumentParser()
+  parser.add_argument("-v", "--verbose", action="store_true",
+      help="turn on verbose output of USB communication")
+  parser.add_argument("--fuzz", type=int, default=-1, help="endpoint to be fuzzed (0 for device enumeration phase)")
+
+  args = parser.parse_args()
+
+  sp = GoodFETSerialPort()
+  fd = Facedancer(sp, verbose=1)
+  u = MAXUSBApp(fd, verbose=1)
+
+  print("Attempting connection")
+  u.connect(TTWEClientDevice(args.verbose, args.fuzz))
+  print("Done connecting")
+  u.service_irqs()
+  print ("Running")
+  u.disconnect()
