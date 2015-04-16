@@ -49,7 +49,56 @@ class SymbolTable:
                         "values(?,?,?,?,?);", (
                 adr,name,memory,size,comment))
         #print "Set %s=%s." % (name,adr)
+class GoodFETbtser:
+    """py-bluez class for emulating py-serial."""
+    def __init__(self,btaddr):
+        import bluetooth
+        if btaddr==None or btaddr=="none" or btaddr=="bluetooth":
+            print("performing inquiry...")
+            nearby_devices = bluetooth.discover_devices(lookup_names = True)
+            print("found %d devices" % len(nearby_devices))
+            for addr, name in nearby_devices:
+                print("  %s - '%s'" % (addr, name))
+                #TODO switch to wildcards.
+                if name=='FireFly-A6BD':
+                    btaddr=addr
+                if name=='RN42-A94A':
+                    btaddr=addr
+                
+            print("Please set $GOODFET to the address of your device.")
+            sys.exit()
+        print("Identified GoodFET at %s" % btaddr)
 
+        # Manually use the portnumber.
+        port=1
+        
+        print("Connecting to %s on port %i." % (btaddr, port))
+        sock=bluetooth.BluetoothSocket(bluetooth.RFCOMM)
+        self.sock=sock
+        sock.connect((btaddr,port))
+        sock.settimeout(10);  #IMPORTANT Must be patient.
+        
+        ##This is what we'd do for a normal reset.
+        #str=""
+        #while not str.endswith("goodfet.sf.net/"):
+        #    str=self.read(64)
+        #    print(str)
+        
+        # Instead, just return and hope for the best.
+        return
+        
+    def write(self,msg):
+        """Send traffic."""
+        import time
+        self.sock.send(msg)
+        #time.sleep(0.1)
+        return
+    def read(self,length):
+        """Read traffic."""
+        data=""
+        while len(data)<length:
+            data=data+self.sock.recv(length-len(data))
+        return data
 class GoodFET:
     """GoodFET Client Library"""
 
