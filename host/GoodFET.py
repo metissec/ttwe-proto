@@ -14,8 +14,6 @@ fmt = ("B", "<H", None, "<L")
 def getClient(name="GoodFET"):
     import GoodFET
     return GoodFET.GoodFET()
-    
-    
 
 class SymbolTable:
     """GoodFET Symbol Table"""
@@ -405,9 +403,6 @@ class GoodFET:
             return []
 
 
-
-
-
     def readcmd(self):
         """Read a reply from the GoodFET."""
         while 1:#self.serialport.inWaiting(): # Loop while input data is available
@@ -498,8 +493,7 @@ class GoodFET:
         self.writecmd(self.GLITCHAPP,0x91,2,
                       self.data)
         #return ord(self.data[0])
-    
-    
+
     #Monitor stuff
     def silent(self,s=0):
         """Transmissions halted when 1."""
